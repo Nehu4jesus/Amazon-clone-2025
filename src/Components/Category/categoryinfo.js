@@ -1,4 +1,4 @@
-export const catagoryinfo = [
+export const categoryinfo = [
   {
     id: 10,
     title: "SanDisk SSD ",

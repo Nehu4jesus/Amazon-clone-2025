@@ -1,14 +1,16 @@
 import React from "react";
 import Header from "./Components/Header/Header";
 import Carousel from "./Components/Carousel/Carousel";
-import Catagory from "./Components/Catagory/Catagory";
+import Category from "./Components/Category/Category";
+import Product from "./Components/Product/Product";
 
 function App() {
   return (
     <div>
       <Header />
       <Carousel />
-      <Catagory />
+      <Category />
+      <Product />
     </div>
   );
 }

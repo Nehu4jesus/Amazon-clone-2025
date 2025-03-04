@@ -1,31 +1,31 @@
-.catagory {
+.category {
   height: 300px;
   width: 300px;
   background-color: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
-.catagory img {
+.category img {
   width: 100%;
   max-height: 250px;
   object-fit: contain;
   padding: 0px 10px;
 }
-.catagory a {
+.category a {
   text-decoration: none;
   color: rgb(35, 35, 35);
 }
-.catagory span {
+.category span {
   padding: 5px;
   font-weight: bold;
   font-size: medium;
 }
-.catagory p {
+.category p {
   padding: 5px;
   font-weight: bold;
   color: rgb(9, 132, 209);
 }
 /* style for container */
-.catagory_container {
+.category_container {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

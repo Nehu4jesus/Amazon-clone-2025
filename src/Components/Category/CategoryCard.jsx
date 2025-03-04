@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./catagory.module.css";
-function CatagoryCard({ data }) {
+import style from "./category.module.css";
+function CategoryCard({ data }) {
   return (
-    <div className={style.catagory}>
+    <div className={style.category}>
       <a href="">
         <span>{data.title}</span>
         <img src={data.imageLink} alt="" />
@@ -12,4 +12,4 @@ function CatagoryCard({ data }) {
   );
 }
 
-export default CatagoryCard;
+export default CategoryCard;
