@@ -42,7 +42,7 @@ function Header() {
         </div>
 
         <div className={style.order_container}>
-          <Link href="/" className={style.language}>
+          <Link to="/" className={style.language}>
             <div className={style.lang2}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"

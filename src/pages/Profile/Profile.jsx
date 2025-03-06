@@ -1,12 +1,13 @@
 import React from "react";
 import LayOut from "../../Components/LayOut/LayOut";
 
-function Cart() {
+function Profile() {
   return (
     <LayOut>
-      <div>This is cart page</div>
+      <h1>Profile Page</h1>
+      <p>Welcome to your profile!</p>
     </LayOut>
   );
 }
 
-export default Cart;
+export default Profile;

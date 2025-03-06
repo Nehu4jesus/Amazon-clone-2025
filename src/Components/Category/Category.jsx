@@ -1,5 +1,5 @@
 import React from "react";
-import { categoryinfo } from "./categoryinfo";// Ensure this file exists and has the correct data
+import { categoryinfo } from "../Category/categoryinfo"; // Ensure this file exists and has the correct data
 import CategoryCard from "./CategoryCard";
 import style from "./category.module.css";
 

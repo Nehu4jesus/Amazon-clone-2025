@@ -1,50 +1,63 @@
 import React, { useEffect, useState } from "react";
 import LayOut from "../../Components/LayOut/LayOut";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { productUrl } from "../../Api/endPoints";
 import ProductCard from "../../Components/Product/ProductCard";
 import style from "./Results.module.css";
-import Loader from "../../Components/Loader/Loader";
+
 function Results() {
   const { categoryName } = useParams();
+  const navigate = useNavigate();
   const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  //   console.log(categoryName)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    setIsLoading(true);
-    // https://fakestoreapi.com/products/category/jewelery
+    if (!categoryName) {
+      setError("No category specified. Redirecting to home...");
+      setTimeout(() => navigate("/"), 2000); // Redirect to home after 2 seconds
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
     axios
       .get(`${productUrl}/products/category/${categoryName}`)
       .then((res) => {
-        // console.log(res)
         setResults(res.data);
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error("API Error:", err);
+        setError("Failed to load products");
+        setLoading(false);
       });
-  }, []);
+  }, [categoryName, navigate]);
+
   return (
     <LayOut>
       <div>
         <h1 style={{ padding: "10px" }}>Results</h1>
-        <p style={{ padding: "10px" }}>Category/{categoryName}</p>
-        <hr />
-        {isLoading ? (
-          <Loader />
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
         ) : (
-          <div className={style.products_container}>
-            {results?.map((singleProduct) => {
-              return (
-                <ProductCard
-                  key={singleProduct.id}
-                  data={singleProduct}
-                  renderADD={true}
-                />
-              );
-            })}
-          </div>
+          <>
+            <p style={{ padding: "10px" }}>Category/{categoryName}</p>
+            <hr />
+            <div className={style.products_container}>
+              {results.length > 0 ? (
+                results.map((singleProduct) => (
+                  <ProductCard key={singleProduct.id} product={singleProduct} />
+
+                ))
+              ) : (
+                <p>No products found in this category.</p>
+              )}
+            </div>
+          </>
         )}
       </div>
     </LayOut>
