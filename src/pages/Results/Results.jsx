@@ -8,18 +8,20 @@ import style from "./Results.module.css";
 
 function Results() {
   const { categoryName } = useParams();
+  console.log(categoryName);
+
   const navigate = useNavigate();
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!categoryName) {
-      setError("No category specified. Redirecting to home...");
-      setTimeout(() => navigate("/"), 2000); // Redirect to home after 2 seconds
-      setLoading(false);
-      return;
-    }
+    // if (!categoryName) {
+    //   setError("No category specified. Redirecting to home...");
+    //   setTimeout(() => navigate("/"), 2000); // Redirect to home after 2 seconds
+    //   setLoading(false);
+    //   return;
+    // }
 
     setLoading(true);
     axios
@@ -51,7 +53,6 @@ function Results() {
               {results.length > 0 ? (
                 results.map((singleProduct) => (
                   <ProductCard key={singleProduct.id} product={singleProduct} />
-
                 ))
               ) : (
                 <p>No products found in this category.</p>

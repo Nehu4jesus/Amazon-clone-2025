@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .header_container {
   background-color: #131921;
   display: flex;
@@ -5,252 +9,152 @@
   align-items: center;
   color: white;
   height: 60px;
-  padding: 0 10px; /* Add padding for better spacing */
 }
-
 .logo_container {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align to start for better layout */
+  justify-content: center;
   max-width: 250px;
+  /* background-color: blue; */
 }
-
 .logo_container img {
   width: 80%;
   padding-top: 5px;
-  padding-left: 20px;
+  margin-left: 20px;
   vertical-align: middle;
 }
-
 .delivery {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3px;
+  font-weight: bold;
   padding: 5px;
 }
-
 .delivery p {
-  font-size: 13px;
-  color: lightgrey;
+  font-size: 12px;
 }
-
 .delivery span {
   margin-top: auto;
+  font-size: 20px;
 }
-
-.delivery div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.delivery div span {
-  font-weight: bold;
-}
-
 .search {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 38px;
-  overflow: hidden;
   border-radius: 5px;
-  flex-grow: 1; /* Allow search to grow and take available space */
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
 }
-
 .search select,
 .search input {
   padding: 10px;
+  font-weight: bold;
   outline: 1px solid white;
-  height: 100%;
-  border: none; /* Remove default borders for consistency */
 }
-
 .search select {
-  background-color: #e7e7e7; /* Slightly darker grey for better contrast */
-  border-right: 1px solid white; /* Add border between select and input */
-  width: 70px;
-}
-
-.search input {
   border: none;
-  width: 100%;
-  margin-left: 0; /* Fixed typo: 'o' to '0' */
-  height: 100%;
-  outline: none; /* Remove default outline on focus */
+  max-width: 65px;
+  background-color: gainsboro;
 }
-
+.search input {
+  border: 1px solid white;
+  width: 100%;
+  margin-left: -2px;
+}
 .search svg {
   padding: 7px;
   background: #febd69;
-  color: black;
-  height: 100%;
-  width: 50px; /* Increased width for the search icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #1a1a1a;
 }
-
 .search svg:hover {
-  background-color: #ca7f1e;
+  background-color: #d49644;
 }
-
 .search:focus-within {
-  border: 2px solid #eb8e16; /* Highlight on focus */
+  border: 2px solid #ff9900;
 }
-
 .order_container {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Align to end for better layout */
+  justify-content: center;
   max-width: 600px;
   gap: 10px;
 }
-
 .order_container a {
   text-decoration: none;
   color: white;
-  height: 52px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5px; /* Add padding for better spacing */
 }
-
-.order_container a div {
-  display: flex;
-  flex-direction: column;
-  width: 120px;
-}
-
 .order_container p {
   font-size: 10px;
-  margin: 0; /* Remove default margins */
 }
-
-.order_container a .lang2 {
+.language {
   display: flex;
-  flex-direction: row;
-  width: 80px;
-  align-items: center; /* Center vertically */
+  width: 100px;
+  padding: 10px;
 }
-
 .language select {
   background-color: #131921;
   border: none;
   color: white;
-  font-size: 14px; /* Improve readability */
 }
-
 .language img {
-  width: 20px; /* Smaller flag for better fit */
-  margin-right: 5px; /* Space between flag and select */
+  width: 40%;
 }
-
 .cart {
   position: relative;
 }
-
 .cart span {
   position: absolute;
   font-weight: bold;
-  left: 16px;
+  top: -7px;
   font-size: 20px;
-  top: 6px;
-  color: orange;
   background-color: #131921;
+  left: 16px;
+  color: orange;
 }
-
-.header_container a:hover,
-.delivery:hover {
+.order_container a:hover,
+.delivery:hover,
+.lower_header ul li:hover,
+.logo_container a:hover {
   border: 1px solid white;
   border-radius: 3px;
 }
-
+/* for lower container */
 .lower_header {
   background-color: #232f3e;
   color: white;
-  padding: 8px 10px; /* Add padding for better spacing */
 }
-
 .lower_header ul {
   display: flex;
-  gap: 10px;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 5px;
 }
-
 .lower_header ul li {
   padding: 8px;
-  font-size: 14px; /* Improve readability */
-  cursor: pointer; /* Indicate clickable items */
 }
-
 .lower_header ul li:first-child {
   display: flex;
-  gap: 3px;
+  gap: 2px;
   align-items: center;
 }
-
-.lower_header ul li:hover {
-  background-color: #37475a; /* Subtle hover effect */
-  border-radius: 3px;
+/* this is to make header fixed */
+.fixed_Header{
+  position:sticky;
+  top:0;
+  z-index: 100;
 }
-
+/* //to add responsiveness */
 @media screen and (max-width: 576px) {
   .header_container {
-    flex-direction: column;
+    display: flex;
+    flex-direction: column !important;
     height: auto;
-    padding: 10px;
   }
-
-  .logo_container {
-    max-width: 100%;
-    justify-content: center;
+  .lower_header ul li:not(:first-child) {
+    display: none;
   }
-
-  .search {
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search select,
-  .search input,
-  .search svg {
-    width: 100%;
-    margin: 0;
-    height: 38px; /* Consistent height on mobile */
-  }
-
-  .search svg {
-    width: 50px; /* Maintain wider icon on mobile */
-    border-radius: 0 5px 5px 0; /* Round only the right corners */
-  }
-
-  .order_container {
-    max-width: 100%;
-    justify-content: center;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-  }
-
-  .order_container a {
-    height: auto;
-    padding: 5px;
-    width: 100px; /* Smaller width on mobile */
-  }
-
-  .lower_header ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .lower_header ul li {
-    width: 100%;
-    text-align: center;
+  .language {
+    display: none;
   }
 }

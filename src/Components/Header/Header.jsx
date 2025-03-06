@@ -5,14 +5,17 @@ import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
-
+import { DataContext } from "../DataProvider/DataProvider";
+import { useContext } from "react";
 function Header() {
+  const [{ basket }, dispatch] = useContext(DataContext);
+  console.log(basket.length);
   return (
-    <>
+    <div className={style.fixed_Header}>
       <div className={style.header_container}>
         <div className={style.logo_container}>
           <Link to="/">
-            <img src="/amazon_logo_white.png" alt="Amazon Logo" />
+            <img src="/amazon_logo_white.png" alt="" />
           </Link>
           <div className={style.delivery}>
             <span>
@@ -26,52 +29,46 @@ function Header() {
         </div>
 
         <div className={style.search}>
-          <select name="category" id="category">
+          <select name="" id="">
             <option value="">ALL</option>
-            <option value="computer">Computer</option>
-            <option value="book">Book</option>
-            <option value="electronics">Electronics</option>
+            <option value="">Computer</option>
+            <option value="">Book</option>
+            <option value="">Electronics</option>
           </select>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Search Amazon"
-          />
-          <BsSearch size={30} /> {/* Increased size for wider icon */}
+          <input type="text" name="" id="" placeholder="Search Amazon" />
+          <BsSearch size={39} />
         </div>
-
         <div className={style.order_container}>
-          <Link to="/" className={style.language}>
+          <a href="" className={style.language}>
             <div className={style.lang2}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
-                alt="US Flag"
+                alt=""
               />
-              <select name="language" id="language">
+              <select name="" id="">
                 <option value="en">EN</option>
                 <option value="am">አማ</option>
               </select>
             </div>
-          </Link>
-          <Link to="">
-            <div>
+          </a>
+          <Link to="/auth">
+            <div className="">
               <p>Hello, sign in</p>
-              <span>Account & Lists</span>
+              <span>Account and List</span>
             </div>
           </Link>
-          <Link to="/Orders" className={style.returns}>
+          <Link to="/orders">
             <p>Returns</p>
-            <span>& Orders</span>
+            <span>&Orders</span>
           </Link>
-          <Link to="/Cart" className={style.cart}>
+          <Link to="/cart" className={style.cart}>
             <BiCart size={35} />
-            <span>0</span>
+            <span>{basket.length}</span>
           </Link>
         </div>
       </div>
       <LowerHeader />
-    </>
+    </div>
   );
 }
 

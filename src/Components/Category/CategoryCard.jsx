@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function CategoryCard({ data }) {
   return (
     <div className={style.category}>
-      <Link to={`/category/${data.name}`}>
+      <Link to={`/category/${data.category}`}>
         <span>
-          <h1>{data?.title}</h1>
+          <h1>{data?.category}</h1>
         </span>
         <img src={data?.imageLink} alt="" />
         <p>Shop Now</p>
