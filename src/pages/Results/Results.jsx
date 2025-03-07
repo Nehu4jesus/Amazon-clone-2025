@@ -40,19 +40,25 @@ function Results() {
   return (
     <LayOut>
       <div>
-        <h1 style={{ padding: "10px" }}>Results</h1>
+        <h1 style={{ padding: "30px" }}>Results</h1>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
         ) : (
           <>
-            <p style={{ padding: "10px" }}>Category/{categoryName}</p>
+            <p style={{ padding: "30px" }}>Category/{categoryName}</p>
             <hr />
             <div className={style.products_container}>
+              
               {results.length > 0 ? (
                 results.map((singleProduct) => (
-                  <ProductCard key={singleProduct.id} product={singleProduct} />
+                  <ProductCard 
+                  key={singleProduct.id} 
+                  product={singleProduct}
+                  render={false}
+                  renderAdd={true}
+                   />
                 ))
               ) : (
                 <p>No products found in this category.</p>

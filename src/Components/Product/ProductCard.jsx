@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
 import { Type } from "../../Utility/action.type";
 import { useContext } from "react";
-function ProductCard({ product, flex, render }) {
+function ProductCard({ product, flex, render, renderAdd }) {
   const { image, title, id, rating, price, description } = product;
   const [{ basket }, dispatch] = useContext(DataContext);
   // console.log(basket);
@@ -21,27 +21,29 @@ function ProductCard({ product, flex, render }) {
   };
   return (
     <div
-      className={`${style.product_card} ${flex ? style.product_flexed : ""}`}
+      className={`${style.card_container} ${flex ? style.product_flexed : ""}`}
     >
       {/* Updated to match CSS class */}
-      <Link to={`/product/${id}`} aria-label={title}>
-        <img src={image} alt={title} className={style.product_image} />
+      <Link to={`/product/${id}`}>
+        <img src={image} alt="" />
       </Link>
-      <div className={style.product_details}>
-        <h3 className={style.product_title}>{title}</h3>
+      <div>
+        <h3>{title}</h3>
         {render && <div style={{ maxWidth: "700px" }}>{description}</div>}
         <div className={style.rating}>
-          <Rating value={rating.rate} precision={0.1} readOnly />
-          <small className={style.rating_count}>{rating.count}</small>
+          <Rating value={rating.rate} precision={0.1}  />
+          <small>{rating.count}</small>
         </div>
-        <div className={style.product_price}>
+        <div >
           <CurrencyFormat amount={price} />
         </div>
-        <div className={style.product_button}>
-          <button className={style.button} onClick={addToCart}>
-            Add to cart
-          </button>
-        </div>
+        {renderAdd && (
+          <div className={style.product_button}>
+            <button className={style.button} onClick={addToCart}>
+              Add to cart
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

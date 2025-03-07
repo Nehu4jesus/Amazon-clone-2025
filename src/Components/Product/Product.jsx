@@ -18,7 +18,11 @@ function Product() {
   return (
     <div className={style.product_container}>
       {products?.map((single_product, i) => {
-        return <ProductCard key={i} product={single_product} />;
+        return <ProductCard 
+        key={i} 
+        product={single_product}
+        renderAdd={true}
+         />;
       })}
     </div>
   );
