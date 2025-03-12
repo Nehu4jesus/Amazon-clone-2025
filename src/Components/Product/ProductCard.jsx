@@ -8,16 +8,13 @@ import { Type } from "../../Utility/action.type";
 import { useContext } from "react";
 function ProductCard({ product, flex, render, renderAdd }) {
   const { image, title, id, rating, price, description } = product;
-  const [{ basket }, dispatch] = useContext(DataContext);
-  // console.log(basket);
+  const [state, dispatch] = useContext(DataContext);
+  console.log(state);
   const addToCart = () => {
-    console.log("clicked", product);
-
     dispatch({
       type: Type.ADD_TO_BASKET,
       item: { image, title, id, rating, price, description },
     });
-    console.log(basket);
   };
   return (
     <div

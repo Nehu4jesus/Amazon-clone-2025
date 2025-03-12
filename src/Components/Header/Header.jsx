@@ -1,4 +1,4 @@
-import React from "react";
+
 import style from "./header.module.css";
 import { Link } from "react-router-dom";
 import { SlLocationPin } from "react-icons/sl";
@@ -7,9 +7,16 @@ import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
 import { useContext } from "react";
+
 function Header() {
-  const [{ basket }, dispatch] = useContext(DataContext);
-  const totalItem = basket.reduce((amount, item) => item.amount + amount,0) 
+   const [{basket},dispatch]=useContext(DataContext)
+   
+  // Safeguard the reduce operation by ensuring item.amount is a number
+  const totalItem = basket?.reduce((amount, item) => { return amount + item.amount}, 0);
+
+
+ 
+
   return (
     <div className={style.fixed_Header}>
       <div className={style.header_container}>
@@ -38,6 +45,7 @@ function Header() {
           <input type="text" name="" id="" placeholder="Search Amazon" />
           <BsSearch size={39} />
         </div>
+
         <div className={style.order_container}>
           <a href="" className={style.language}>
             <div className={style.lang2}>
@@ -63,8 +71,10 @@ function Header() {
           </Link>
           <Link to="/cart" className={style.cart}>
             <BiCart size={35} />
-            <span>{totalItem}</span>
+            <span>{totalItem}</span>{" "}
+            {/* totalItem is now guaranteed to be a number */}
           </Link>
+          
         </div>
       </div>
       <LowerHeader />
