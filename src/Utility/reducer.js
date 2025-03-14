@@ -1,6 +1,6 @@
 import { Type } from "./action.type";
 
-export const initialState = { basket: [] };
+export const initialState = { basket: [], user: null };
 export const reducer = (state, action) => {
   switch (action.type) {
     case Type.ADD_TO_BASKET:
@@ -46,6 +46,13 @@ export const reducer = (state, action) => {
         ...state,
         basket: state.basket, // Return original state if no item was removed
       };
+      
+        case Type.SET_USER:
+          return {
+            ...state,
+            user: action.user,
+          };
+      
 
     default:
       return state;

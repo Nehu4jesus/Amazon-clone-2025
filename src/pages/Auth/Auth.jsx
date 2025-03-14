@@ -16,7 +16,7 @@ function Auth() {
   const [error, setError] = useState("");
   // console.log(email, password)
   const [{ user }, dispatch] = useContext(DataContext);
-  // console.log(user);
+  console.log(user);
 
   const [loading, setLoading] = useState({ signIn: false, signUp: false });
 
@@ -28,11 +28,11 @@ function Auth() {
       // we do sign in related
       setLoading({ ...loading, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredentioal) => {
-          console.log(userCredentioal);
+        .then((userCredential) => {
+          console.log(userCredential);
           dispatch({
             type: Type.SET_USER,
-            user: userCredentioal.user,
+            user: userCredential.user,
           });
           setLoading({ ...loading, signIn: false });
           setError("");
@@ -47,11 +47,11 @@ function Auth() {
       // create new account
       setLoading({ ...loading, signUp: true });
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredentioal) => {
-          console.log(userCredentioal);
+        .then((userCredential) => {
+          console.log(userCredential);
           dispatch({
             type: Type.SET_USER,
-            user: userCredentioal.user,
+            user: userCredential.user,
           });
           setError("");
           setLoading({ ...loading, signUp: false });
@@ -66,7 +66,7 @@ function Auth() {
   };
   return (
     <section className={style.login}>
-      <Link to="/amazon-clone">
+      <Link to="/">
         <img src="./amazon_logo_black.png" alt="" />
       </Link>
       <div className={style.loginContainer}>

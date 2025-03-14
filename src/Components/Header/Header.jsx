@@ -7,15 +7,12 @@ import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
 import { useContext } from "react";
-
+import { auth } from "../../Utility/firebase";
 function Header() {
-   const [{basket},dispatch]=useContext(DataContext)
+   const [{basket,user},dispatch]=useContext(DataContext)
    
   // Safeguard the reduce operation by ensuring item.amount is a number
   const totalItem = basket?.reduce((amount, item) => { return amount + item.amount}, 0);
-
-
- 
 
   return (
     <div className={style.fixed_Header}>
@@ -59,10 +56,27 @@ function Header() {
               </select>
             </div>
           </a>
-          <Link to="/auth">
+          <Link to={!user && "/auth"}>
             <div className="">
-              <p>Hello, sign in</p>
-              <span>Account and List</span>
+              {user ? (
+                <>
+                  <p>Hello {user?.email.split("@")[0]}</p>
+                  <span
+                    onClick={() => {
+                      auth.signOut();
+                      
+                    }}
+                  >
+                    {" "}
+                    Sign Out
+                  </span>
+                </>
+              ) : (
+                <>
+                  <p>Hello, Sign In</p>
+                  <span>Account & List</span>
+                </>
+              )}
             </div>
           </Link>
           <Link to="/orders">
@@ -74,7 +88,6 @@ function Header() {
             <span>{totalItem}</span>{" "}
             {/* totalItem is now guaranteed to be a number */}
           </Link>
-          
         </div>
       </div>
       <LowerHeader />
