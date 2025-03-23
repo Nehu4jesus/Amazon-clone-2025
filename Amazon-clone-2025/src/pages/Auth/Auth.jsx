@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import LayOut from "../../Components/LayOut/LayOut";
+import LayOut from "../../Components/Layout/Layout";
 import style from "./auth.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../Utility/firebase";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import {
@@ -10,13 +10,15 @@ import {
 } from "firebase/auth";
 import { Type } from "../../Utility/action.type";
 import { ClipLoader } from "react-spinners";
+import { useNavigate, useLocation } from "react-router-dom";
 function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   // console.log(email, password)
+  const navStateData = useLocation();
   const [{ user }, dispatch] = useContext(DataContext);
-  console.log(user);
+  // console.log(user);
 
   const [loading, setLoading] = useState({ signIn: false, signUp: false });
 
@@ -36,7 +38,7 @@ function Auth() {
           });
           setLoading({ ...loading, signIn: false });
           setError("");
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           // console.log(err)
@@ -55,7 +57,7 @@ function Auth() {
           });
           setError("");
           setLoading({ ...loading, signUp: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           // console.log(err);
@@ -71,6 +73,20 @@ function Auth() {
       </Link>
       <div className={style.loginContainer}>
         <h1>Sign In</h1>
+
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {navStateData?.state?.msg}
+          </small>
+        )}
+
         <form action="">
           <div className="">
             <label htmlFor="email">Email</label>

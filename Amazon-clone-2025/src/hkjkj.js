@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import Layout from "../../Components/LayOut/LayOut.jsx";
+import Layout from "../../components/Layout/Layout";
 import classes from "./payment.module.css";
 import { DataContext } from "../../components/DataProvider/DataProvider.jsx";
-import ProductCard from "../../Components/Product/ProductCard.jsx";
+import ProductCard from "../../components/Product/ProductCard.jsx";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import CurrencyFormat from "../../components/CurrencyFormat/CurrencyFormat.jsx";
 import { ClipLoader } from "react-spinners";
@@ -152,4 +152,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Paymen;
