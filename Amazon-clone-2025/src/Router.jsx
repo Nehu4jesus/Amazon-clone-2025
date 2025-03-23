@@ -8,6 +8,7 @@ import Results from "./pages/Results/Results";
 import ProductDetail  from "./pages/ProductDetail/ProductDetail";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Payment from "./pages/Payment/Payment";
 const stripePromise = loadStripe(
   "pk_test_51R2bSfE2Cv8LxcKq7aKiaw3EQBwLnpPjJN7olPESHqX2qPg9dPcf3N7iy0hkeJBa8mXKZkBrIVTTF8TM81eCgm5s00GgmQawTr"
 );

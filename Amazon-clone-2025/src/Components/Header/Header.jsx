@@ -81,7 +81,7 @@ function Header() {
           </Link>
           <Link to="/orders">
             <p>Returns</p>
-            <span>&Orders</span>
+            <span>&Order</span>
           </Link>
           <Link to="/cart" className={style.cart}>
             <BiCart size={35} />
